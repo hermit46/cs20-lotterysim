@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Lucky for Life: Come Get Your Millions!</title>
+        <link rel = "stylesheet" href="styles.css">
+        <div id = "content"></div>
+        <style> body {
+            background-image: url(dylan-nolte-RSsqjpezn6o-unsplash.jpg);
+            background-color: rgba(255, 255, 255, 0.6);
+            background-blend-mode: lighten;
+        }
+        </style>
+    </head>
+
+
+<body>
+    <div class = "header">
+        Welcome to Lucky for Life!<p></p>
+    </div>
+
+    <script language = 'javascript' async>
+
+
+        // Generating random input
+        const magic_num = [];
+        var lucky_num;
+
+        // Creating random ints for both magic number & lucky number
+        for(i = 0; i < 5; i++) {
+            val = Math.floor(Math.random() * 48 + 1);
+            magic_num[i] = parseInt(val);
+        }
+
+        lucky_num = Math.floor(Math.random() * 17 + 1);
+
+        // Sorting the magic numbers
+        magic_num.sort(function(a,b) {
+            return a - b;
+        });
+
+        console.log(magic_num);
+        console.log(lucky_num);
+
+
+        // Taking user input
+        const user_num = [];
+        var user_lucky_num;
+
+        for(i = 0; i < 5; i++) {
+            val = prompt("What is the magic number " + (parseInt(i) + 1) + " ? (Pick between 1-49)")
+            user_num[i] = parseInt(val);
+        }
+
+        user_lucky_num = parseInt(prompt("Now, what is your lucky number? (Pick between 1-18)"))
+
+        // Sorting the users' numbers
+        user_num.sort(function(a,b) {
+            return a - b;
+        });
+
+        console.log(user_num);
+        console.log(user_lucky_num);
+
+        //Displaying our numbers sorted using a loop
+        document.write("<div id = 'jstext'> ================================")
+        document.write("<div id = 'jstext'> Here are your picks: ")
+        for (i = 0; i < user_num.length; i++) {
+            document.write("<div id = 'jstext'> " + user_num[i])
+        }
+        document.write("<p></p>================================")
+
+        //Displaying the winning numbers (magic_num) sorted using a loop
+        document.write("<div id = 'jstext'> Here are the winning numbers: ")
+        for (i = 0; i < magic_num.length; i++) {
+            document.write("<div id = 'jstext'> " + magic_num[i])
+        }
+        document.write("<p></p>================================")
+
+        var num_matches;
+
+        // dictionary structures to hold matches + prizes
+        var normalTable = {
+            0:"$0",
+            1:"$0",
+            2:"$3",
+            3:"$20",
+            4:"$200",
+            5:"$25,000 a YEAR for LIFE"
+        };
+
+        var luckyTable = {
+            0:"$4",
+            1:"$6",
+            2:"$25",
+            3:"$150",
+            4:"$5000",
+            5:"$7000 a WEEK for LIFE"
+        };
+
+        // This function iterates through one array, and counts if one array's elements matches with the other. It returns the number of matches
+        function arrayMatch(arr1,arr2) {
+            var result = [];
+            arr1 = arr1.toString().split(',').map(Number);
+            arr2 = arr2.toString().split(',').map(Number);
+            for (var i in arr1) {
+                if (arr2.indexOf(arr1[i]) !== -1)
+                    result.push(arr1[i]);
+            }
+            console.log(result)
+            return result
+        }
+
+        num_matches = arrayMatch(user_num,magic_num).length
+        document.write("<div id = 'jstext'> The number of matches is: " + num_matches + "<p></p>")
+
+        
+        document.write("<div id = 'jstext'>  The lucky number is: " + lucky_num + ", you picked: ", user_lucky_num)
+        // Two payout scenarios: Lucky Ball or No Lucky Ball
+        if (user_lucky_num == lucky_num)
+            document.write("<div id = 'jstext'> THE LUCKY BALL MATCHED! Your payout is: " + luckyTable[num_matches] + "<br>")
+        else
+            document.write("<div id = 'jstext'> The Lucky Ball did not match. Your payout is: " + normalTable[num_matches] + "<br>")
+
+
+  
+    </script>
+    <p></p><strong>Photo by <a href="https://unsplash.com/@dylan_nolte?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">dylan nolte</a> on <a href="https://unsplash.com/s/photos/lottery?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></strong>
+  
+</body>
+</html>

@@ -1,0 +1,13 @@
+.header {
+  color: rgb(47, 79, 79);
+  font-size: 20pt;
+  justify-content: center;
+  transition: 0.5s color;
+}
+
+.header:hover,
+.header:focus {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s;
+}
